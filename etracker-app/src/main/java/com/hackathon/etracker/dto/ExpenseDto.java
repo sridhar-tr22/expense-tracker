@@ -6,7 +6,9 @@ package com.hackathon.etracker.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
@@ -43,7 +45,7 @@ public class ExpenseDto implements Serializable {
 	private User expenseCreatedBy;
 
 	@NotNull
-	private Set<User> participants = new HashSet<>();
+	private List<User> participants = new ArrayList<>();
 
 	@NotNull
 	private BigDecimal totalAmount;
@@ -135,14 +137,14 @@ public class ExpenseDto implements Serializable {
 	/**
 	 * @return the participants
 	 */
-	public Set<User> getParticipants() {
+	public List<User> getParticipants() {
 		return participants;
 	}
 
 	/**
 	 * @param participants the participants to set
 	 */
-	public void setParticipants(Set<User> participants) {
+	public void setParticipants(List<User> participants) {
 		this.participants = participants;
 	}
 
