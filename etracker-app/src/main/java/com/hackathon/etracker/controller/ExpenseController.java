@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +30,22 @@ public class ExpenseController {
 	private ExpenseService expenseService;
 	
 	@PostMapping("/expenses/new")
-	public void addExpense(@RequestBody ExpenseDto expenseRequest) {
+	public void addExpense(@Valid @RequestBody ExpenseDto expenseRequest) {
 		expenseService.addExpense(expenseRequest);
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
 	@GetMapping("/sample")
 	public ResponseEntity<ExpenseDto> sampleRequest() {
 		ExpenseDto dto = new ExpenseDto();
+		
+		/***
+		 * For testing purpose only hard coding the values
+		 */
 		dto.setEventName("Movie");
 		User user = new User();
 		user.setUserId(1L);

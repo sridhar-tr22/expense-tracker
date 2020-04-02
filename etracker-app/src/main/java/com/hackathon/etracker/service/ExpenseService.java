@@ -1,6 +1,7 @@
 package com.hackathon.etracker.service;
 
 import com.hackathon.etracker.dto.ExpenseDto;
+import com.hackathon.etracker.dto.ExpenseResponse;
 
 /**
  * @author User1
@@ -11,5 +12,5 @@ import com.hackathon.etracker.dto.ExpenseDto;
  */
 public interface ExpenseService {
 
-	void addExpense(ExpenseDto expenseRequest);
+	public ExpenseResponse addExpense(ExpenseDto expenseRequest);
 }

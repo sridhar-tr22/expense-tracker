@@ -7,9 +7,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * @author User1
@@ -28,9 +31,13 @@ public class ExpenseDetail implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long expenseDetailId;
 
-	private Long expenseId;
+	@ManyToOne
+	@JoinColumn(name = "expense_id", foreignKey = @ForeignKey(name = "EXPENSE_ID_FK"))
+	private Expense expenseId;
 
-	private Long user;
+	@ManyToOne
+	@JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USER_ID_FK"))
+	private User user;
 
 	private BigDecimal amountOwes;
 
@@ -62,28 +69,28 @@ public class ExpenseDetail implements Serializable {
 	/**
 	 * @return the expenseId
 	 */
-	public Long getExpenseId() {
+	public Expense getExpenseId() {
 		return expenseId;
 	}
 
 	/**
 	 * @param expenseId the expenseId to set
 	 */
-	public void setExpenseId(Long expenseId) {
+	public void setExpenseId(Expense expenseId) {
 		this.expenseId = expenseId;
 	}
 
 	/**
 	 * @return the user
 	 */
-	public Long getUser() {
+	public User getUser() {
 		return user;
 	}
 
 	/**
 	 * @param user the user to set
 	 */
-	public void setUser(Long user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 
