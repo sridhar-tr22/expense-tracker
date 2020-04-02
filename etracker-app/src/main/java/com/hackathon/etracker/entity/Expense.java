@@ -6,13 +6,16 @@ package com.hackathon.etracker.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -46,10 +49,12 @@ public class Expense implements Serializable {
 	private String expenseRatio;
 
 	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "user_id", foreignKey = @ForeignKey(name="USER_ID_FK"))
 	private User expenseCreatedBy;
 
 	@NotNull
-	private Set<User> participants = new HashSet<>();
+	private List<User> participants = new ArrayList<>();
 
 	@NotNull
 	private BigDecimal totalAmount;
@@ -147,14 +152,14 @@ public class Expense implements Serializable {
 	/**
 	 * @return the participants
 	 */
-	public Set<User> getParticipants() {
+	public List<User> getParticipants() {
 		return participants;
 	}
 
 	/**
 	 * @param participants the participants to set
 	 */
-	public void setParticipants(Set<User> participants) {
+	public void setParticipants(List<User> participants) {
 		this.participants = participants;
 	}
 
